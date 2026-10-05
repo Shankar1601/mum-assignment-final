@@ -1,0 +1,78 @@
+# -----------------------------------------------------------------------------------
+# ROOT .GITIGNORE - Covers both /backend and /vite directories
+# -----------------------------------------------------------------------------------
+
+# Node.js dependencies
+node_modules/
+jspm_packages/
+.npm/
+
+# Environment variables (keep example files available for setup docs)
+.env
+.env.*
+!.env.example
+!.env.*.example
+!**/.env.example
+!**/.env.*.example
+*.pem
+
+# Frontend Build Outputs (Vite)
+vite/dist/
+vite/dist-ssr/
+vite/test-results/
+.vercel/
+
+# Backend Build Outputs / Caches
+backend/build/
+backend/dist/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.tsbuildinfo
+
+# Diagnostic reports
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory
+coverage/
+*.lcov
+.nyc_output/
+
+# Caches
+.eslintcache
+.stylelintcache
+.parcel-cache/
+.cache/
+
+# OS Metadata
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor & IDE Directories
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.swp
