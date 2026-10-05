@@ -1,84 +1,45 @@
-# MUM Digital Agency - Full Stack Refactor
+MUM Digital Agency - Full Stack Clone
 
-A modern, responsive, and SEO-optimized full-stack web application for MUM Digital Agency. 
+A modern, responsive, and SEO-optimized full-stack web application replicating the homepage of MUM Digital Agency. This project includes a pixel-perfect frontend replication, a functional contact form, and a secure backend admin dashboard for complete CRUD operations.
 
-**Frontend:** React, Vite, CSS (Mobile-first, responsive), Lenis (Smooth Scrolling), Lucide React (Icons).
-**Backend:** Node.js, Express, PostgreSQL.
-**Deployment:** Vercel (Frontend) & Render (Backend + Database).
+🔗 Live Project Links
 
----
+Frontend Application: https://mum-assignment-final.vercel.app/
 
-## 🚀 Local Development Setup
+Admin Dashboard: https://mum-assignment-final.vercel.app/admin
 
-### 1. Database Setup (PostgreSQL)
-1. Ensure PostgreSQL is installed and running on your machine.
-2. Create a new database (e.g., `mum_agency`).
-3. Run the SQL commands in `backend/schema.sql` to generate the `submissions` table.
+Backend API (Render): https://mum-assignment-final.onrender.com
 
-### 2. Backend Setup
-1. Navigate to the backend directory: `cd backend`
-2. Install dependencies: `npm install`
-3. Create a `.env` file based on `.env.example` (or the provided `.env`) and update your `DATABASE_URL`.
-4. Start the server: `npm run dev` (Runs on `http://localhost:5000`)
+GitHub Repository: https://github.com/Shankar1601/mum-assignment-final.git
 
-### 3. Frontend Setup
-1. Navigate to the vite directory: `cd vite`
-2. Install dependencies: `npm install`
-3. Start the Vite development server: `npm run dev` (Runs on `http://localhost:3000`)
-4. Vite will automatically proxy `/api` requests to your local backend.
+🛠️ Technology Stack & Technical Decisions
 
----
+Frontend (Vercel)
 
-## ☁️ Deployment Guide
+React.js & Vite: Chosen for blazing-fast local development and optimized production builds.
 
-### Phase 1: Database & Backend (Render)
+Vanilla CSS (Mobile-First): Implemented a custom, responsive design system without heavy frameworks to maintain strict control over the exact layout, typography, and animations matching the reference site.
 
-1. **Create the Database:**
-   - Log into [Render](https://render.com/).
-   - Click **New** -> **PostgreSQL**.
-   - Name it `mum-db` and create it.
-   - Copy the **Internal Database URL** (for Render-to-Render connections) and **External Database URL** (for connecting from your local machine to run the schema).
-   - Use a tool like pgAdmin, DBeaver, or `psql` to connect using the External URL and run the contents of `backend/schema.sql`.
+Lenis: Integrated for buttery-smooth scrolling physics, crucial for matching the premium feel of the original agency website.
 
-2. **Deploy the Backend:**
-   - Click **New** -> **Web Service** on Render.
-   - Connect your GitHub repository.
-   - Set the following settings:
-     - **Root Directory:** `backend`
-     - **Build Command:** `npm install`
-     - **Start Command:** `npm start`
-   - Add Environment Variables:
-     - `NODE_ENV`: `production`
-     - `DATABASE_URL`: *(Paste the Internal Database URL from Step 1)*
-     - `FRONTEND_URL`: *(Leave blank for now, you will update this after deploying to Vercel)*
-   - Deploy the service and copy the provided backend URL (e.g., `https://mum-backend-xyz.onrender.com`).
+Lucide React: Used for lightweight, scalable SVG icons.
 
-### Phase 2: Frontend (Vercel)
+Backend (Render)
 
-1. **Deploy the Frontend:**
-   - Log into [Vercel](https://vercel.com/).
-   - Click **Add New** -> **Project** and select your GitHub repository.
-   - Set the following settings:
-     - **Framework Preset:** Vite
-     - **Root Directory:** `vite`
-     - **Build Command:** `npm run build`
-     - **Output Directory:** `dist`
-   - Add Environment Variables:
-     - `VITE_API_URL`: *(Paste the Render backend URL from Phase 1, e.g., `https://mum-backend-xyz.onrender.com/api`)*
-   - Deploy the application.
+Node.js & Express.js: A lightweight, robust framework for building the REST API to handle form submissions and admin CRUD operations.
 
-### Phase 3: Final Security Tie-in
+CORS Security: Configured to strictly accept requests only from the deployed Vercel frontend URL.
 
-1. **Restrict CORS:**
-   - Go back to your backend Web Service settings in **Render**.
-   - Update the `FRONTEND_URL` environment variable to match your live Vercel URL (e.g., `https://mum-assignment.vercel.app`).
-   - Render will automatically restart your backend with the hardened CORS policy.
+Database (Neon DB / PostgreSQL)
 
----
+PostgreSQL: A powerful relational database perfect for structured form data. Hosted via Neon DB for seamless serverless scaling and connection pooling.
 
-## 🎨 Architecture Notes
+⚙️ How It Works
 
-- **SEO & GEO:** Semantic HTML5 tags (`<article>`, `<section>`, `<main>`) are used throughout. The application is configured to serve lightweight, fast-loading content.
-- **Mobile First:** CSS media queries are optimized for mobile viewports first, scaling up gracefully to desktop interfaces.
-- **Modularity:** The monolithic `main.jsx` has been refactored into distinct, functional React components (Hero, Benefits, Services, Contact, etc.) for high reusability and clean memory management.
-- **Admin Dashboard:** Access the backend submissions locally or in production by navigating to `/admin`.
+User Interaction: Users visit the frontend (Vercel) and interact with the responsive UI.
+
+Form Submission: When a user submits the contact form, the React frontend performs initial validation, then sends a POST request to the Express API (Render).
+
+Data Storage: The Node/Express backend validates the payload and securely inserts the record into the PostgreSQL database (Neon).
+
+Admin Management: Navigating to the /admin route loads the dashboard. The frontend queries the backend API to fetch all submissions, allowing the user to View, Edit, or Delete records (Full CRUD) directly from the database.
